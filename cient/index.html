@@ -3,14 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Joke Generator</title>
+    <title>Trails Universe Q&A</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Joke Generator</h1>
-    <input type="text" id="jokeRequest" placeholder="Enter your joke request" />
-    <button id="getJokeButton">Get a Joke</button>
-    <p id="joke"></p>
+    <h1>Trails Universe Quiz</h1>
+    <div>
+      <label for="characterSelect"
+        >Select the character who will host the:</label
+      >
+      <select id="characterSelect">
+        <option value="Estelle Bright">Estelle Bright</option>
+        <option value="Joshua Bright">Joshua Bright</option>
+        <option value="Scherazard Harvey">Scherazard Harvey</option>
+        <option value="Olivier Lenheim">Olivier Lenheim</option>
+        <option value="Agate Crosner">Agate Crosner</option>
+        <option value="Tita Russell">Tita Russell</option>
+        <option value="Zin Vathek">Zin Vathek</option>
+        <option value="Kloe Rinz">Kloe Rinz</option>
+        <option value="Anelace Elfead">Anelace Elfead</option>
+        <option value="Kevin Graham">Kevin Graham</option>
+        <option value="Ren Bright">Ren Bright</option>
+        <option value="Lloyd Bannings">Lloyd Bannings</option>
+        <option value="Elie MacDowell">Elie MacDowell</option>
+        <option value="Randy Orlando">Randy Orlando</option>
+        <option value="Tio Plato">Tio Plato</option>
+        <option value="Rixia Mao">Rixia Mao</option>
+        <option value="KeA Bannings">KeA Bannings</option>
+        <option value="Rean Schwarzer">Rean Schwarzer</option>
+        <option value="Alisa Reinford">Alisa Reinford</option>
+        <option value="Elliot Craig">Elliot Craig</option>
+        <option value="Laura S. Arseid">Laura S. Arseid</option>
+        <option value="Machias Regnitz">Machias Regnitz</option>
+        <option value="Emma Millstein">Emma Millstein</option>
+        <option value="Jusis Albarea">Jusis Albarea</option>
+        <option value="Fie Claussell">Fie Claussell</option>
+        <option value="Gaius Worzel">Gaius Worzel</option>
+        <option value="Millium Orion">Millium Orion</option>
+        <option value="Crow Armbrust">Crow Armbrust</option>
+        <option value="Van Arkride">Van Arkride</option>
+        <option value="Agnes Claudel">Agnes Claudel</option>
+        <option value="Feri Al-Fayed">Feri Al-Fayed</option>
+        <option value="Aeron Wei">Aeron Wei</option>
+        <option value="Risette Twinings">Risette Twinings</option>
+        <option value="Quatre Salision">Quatre Salision</option>
+        <option value="Judith Ranster">Judith Ranster</option>
+      </select>
+    </div>
+    <div>
+      <button id="startQuizButton">Start Quiz</button>
+    </div>
+    <div id="quizContainer" style="display: none">
+      <p id="quizIntroduction"></p>
+      <p id="quizQuestion"></p>
+      <div id="quizAnswers"></div>
+    </div>
+    <p id="score">Score: 0</p>
     <script src="script.js"></script>
   </body>
 </html>
