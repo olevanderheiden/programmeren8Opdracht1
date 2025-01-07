@@ -13,7 +13,7 @@ app.use(cors());
 const model = new ChatOpenAI({
   azureOpenAIApiKey: process.env.AZURE_OPENAI_API_KEY,
   azureOpenAIApiVersion: process.env.OPENAI_API_VERSION,
-  azureOpenAIApiInstanceName: process.env.AZURE_OPENAI_API_INSTANCE_NAME,
+  azureOpenAIApiInstanceName: process.env.AZURE_OPENAIA_API_INSTANCE_NAME,
   azureOpenAIApiDeploymentName: process.env.AZURE_OPENAIA_API_DEPLOYMENT_NAME,
 });
 
@@ -22,7 +22,7 @@ app.get("/quiz", async (req, res) => {
     req.query.request ||
     "Introduce yourself and host a quiz with a question and four possible answers. Indicate which answer is correct.";
   try {
-    const prompt = `${quizRequest} Please return the response in the following JSON format: {"intro": "introduction text", "question": "question text", "correct": "correct answer", "wrong1": "wrong answer 1", "wrong2": "wrong answer 2", "wrong3": "wrong answer 3"}.`;
+    const prompt = `${quizRequest} Please return the response in the following JSON format: {"intro": "character introduction or comment about the player's success during the quiz", "question": "question text", "correct": "correct answer", "wrong1": "wrong answer 1", "wrong2": "wrong answer 2", "wrong3": "wrong answer 3"}.`;
     const quiz = await model.invoke(prompt);
     console.log("Quiz:", quiz);
 
