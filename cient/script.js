@@ -14,6 +14,7 @@ let currentCharacter = "";
 let askedQuestions = new Set();
 let previousQuestion;
 
+// Initialize the character select dropdown using the characters array
 characterSelect.addEventListener("change", () => {
   hasIntroduced = false;
   previousAnswer = "";
@@ -24,6 +25,7 @@ characterSelect.addEventListener("change", () => {
   generateQuiz(currentCharacter, previousAnswer, score, previousQuestion);
 });
 
+// Function to generate a quiz question
 const generateQuiz = async (
   character,
   previousAnswer,
@@ -32,50 +34,58 @@ const generateQuiz = async (
 ) => {
   let request;
 
+  // Check if the character has introduced themselves or not
   if (!hasIntroduced) {
+    // If not, generate a request to introduce the character allong with the quiz question
     request = `You are ${character} from the The Legend of Heroes: Trails series made by Nihon Falcom. Introduce yourself in less than 100 characters and then host a quiz in character with a question and four possible answers. Indicate which answer is correct. Limit your self to only questions about the Trails series. And only ask questions that ${character} would know about.`;
   } else {
+    //If the character has introduced themselves, generate a request to host a quiz question without introducing the character
     request = `You are ${character} from the The Legend of Heroes: Trails series made by Nihon Falcom. Host a quiz in character with a question and four possible answers. Indicate which answer is correct. Limit your self to only questions about the Trails series. And only ask questions that ${character} would know about.`;
     if (previousAnswer) {
-      console.log("Previous answer:", previousAnswer);
+      // If the player has answered a question bfore, generate a request to provide feedback based on the player's answer and score
       request += ` Comment on the player's performance based on their score and previous answer. Dot this in character. The previous answer was ${previousAnswer}. And the total score the player currently has is ${score}. The previous question was ${previousQuestion}. Do this in character too! Avoid reintroducing yourself!`;
     }
   }
 
+  // Fetch a quiz question from the server/chatGPT API
   try {
-    thinkingIndicator.style.display = "block"; // Show thinking indicator
+    // Show thinking indicator and hide quiz container while fetching the question
+    thinkingIndicator.style.display = "block";
     thinkingIndicator.innerText = `${character} is currently thinking of a new question....`; // Update thinking indicator text
     quizContainer.style.display = "none"; // Hide quiz container
 
+    //Send a request to the server to generate a quiz question
     const response = await fetch(
       `http://localhost:3000/quiz?request=${encodeURIComponent(request)}`
     );
+    // Parse the JSON response and hide the thinking indicator
     const data = await response.json();
-    thinkingIndicator.style.display = "none"; // Hide thinking indicator
+    thinkingIndicator.style.display = "none";
 
+    // If the response is incomplete, generate a new question
     const { intro, question, correct, wrong1, wrong2, wrong3 } = data;
 
     if (!intro || !question || !correct || !wrong1 || !wrong2 || !wrong3) {
-      console.error("Incomplete data received, generating a new question...");
       generateQuiz(character, previousAnswer, score, previousQuestion);
       return;
     }
 
+    // Check if the question has been asked before to avoid repetition. If so, generate a new question
     if (askedQuestions.has(question)) {
-      console.log("Repeated question received, generating a new question...");
       generateQuiz(character, previousAnswer, score);
       return;
     }
 
+    // Add the question to the set of asked questions
     askedQuestions.add(question);
 
+    //Update the has introduced flag to avoid reintroducing the character when generating the next question
     if (!hasIntroduced) {
-      quizIntroduction.innerText = intro;
       hasIntroduced = true; // Update the flag here
-    } else {
-      quizIntroduction.innerText = intro;
     }
+    quizIntroduction.innerText = intro;
 
+    // Update the quiz question and answers in the UI
     quizQuestion.innerText = `Question: ${question}`;
     quizAnswers.innerHTML = "";
 
@@ -89,12 +99,14 @@ const generateQuiz = async (
     // Shuffle answers to randomize their order
     answers.sort(() => Math.random() - 0.5);
 
+    // Create a button for each answer and add an event listener to handle the answer selection
     const answerLabels = ["A", "B", "C", "D"];
     answers.forEach((answer, index) => {
       const button = document.createElement("button");
       button.innerText = `${answerLabels[index]}: ${answer.text}`;
       button.addEventListener("click", async () => {
         previousQuestion = question;
+        //update the score if the answer is correct and update the previous answer so that ai can give feedback
         if (answer.isCorrect) {
           score++;
           scoreElement.innerText = `Score: ${score}`;
@@ -103,23 +115,20 @@ const generateQuiz = async (
           previousAnswer = "wrong";
         }
 
-        // Log the current state for debugging
-        console.log("Current score:", score);
-        console.log("Previous answer:", previousAnswer);
-
-        // Generate the next question with feedback
+        // Generate a new quiz question after the player has answered the current question
         generateQuiz(character, previousAnswer, score, previousQuestion);
       });
       quizAnswers.appendChild(button);
     });
 
-    quizContainer.style.display = "block"; // Show quiz container
+    quizContainer.style.display = "block";
   } catch (error) {
     console.error("Error fetching quiz:", error);
     generateQuiz(character, previousAnswer, score, previousQuestion);
   }
 };
 
+// Event listener for the start quiz button
 startQuizButton.addEventListener("click", () => {
   const character = characterSelect.value;
   if (character !== currentCharacter) {
@@ -128,5 +137,6 @@ startQuizButton.addEventListener("click", () => {
     currentCharacter = character;
     askedQuestions.clear();
   }
+  //Quiz question generation request call
   generateQuiz(character, previousAnswer, score, previousQuestion);
 });

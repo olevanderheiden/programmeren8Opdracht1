@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trails Universe Q&A</title>
+    <title>Trails Universe Quiz</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -12,6 +12,7 @@
       <label for="characterSelect"
         >Select the character who will host the:</label
       >
+      <!-- Dropdown menu for selecting the character -->
       <select id="characterSelect">
         <option value="Estelle Bright">Estelle Bright</option>
         <option value="Joshua Bright">Joshua Bright</option>
@@ -51,15 +52,20 @@
       </select>
     </div>
     <div>
+      <!--Button to start the quiz-->
       <button id="startQuizButton">Start Quiz</button>
+      <!--Indicator to show that the quiz is being loaded hidden by default-->
       <div id="thinkingIndicator" style="display: none">Thinking...</div>
     </div>
+    <!--Container for the quiz hidden by default until the quiz starts contains the quiz introduction, question and answer buttons-->
     <div id="quizContainer" style="display: none">
       <p id="quizIntroduction"></p>
       <p id="quizQuestion"></p>
       <div id="quizAnswers"></div>
     </div>
+    <!--Score indicator resets to 0 when the character is changed-->
     <p id="score">Score: 0</p>
+    <!--Connection to the script.js file-->
     <script src="script.js"></script>
   </body>
 </html>
