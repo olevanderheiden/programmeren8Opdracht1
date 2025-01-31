@@ -14,6 +14,7 @@
       >
       <!-- Dropdown menu for selecting the character -->
       <select id="characterSelect">
+        <option value="custom">Custom Character</option>
         <option value="Estelle Bright">Estelle Bright</option>
         <option value="Joshua Bright">Joshua Bright</option>
         <option value="Scherazard Harvey">Scherazard Harvey</option>
@@ -48,8 +49,15 @@
         <option value="Aeron Wei">Aeron Wei</option>
         <option value="Risette Twinings">Risette Twinings</option>
         <option value="Quatre Salision">Quatre Salision</option>
-        <option value="Judith Ranster">Judith Ranster</option>
+        <option value="Judith Lanster">Judith Lanster</option>
       </select>
+      <input
+        type="text"
+        id="customCharacterInput"
+        style="display: none"
+        placeholder="Enter custom character"
+        onblur="addCustomCharacter()"
+      />
     </div>
     <div>
       <!--Button to start the quiz-->

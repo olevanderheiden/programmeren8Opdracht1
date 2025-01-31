@@ -6,6 +6,7 @@ const quizQuestion = document.getElementById("quizQuestion");
 const quizAnswers = document.getElementById("quizAnswers");
 const startQuizButton = document.getElementById("startQuizButton");
 const characterSelect = document.getElementById("characterSelect");
+const customInput = document.getElementById("customCharacterInput");
 
 let score = 0;
 let hasIntroduced = false;
@@ -16,13 +17,37 @@ let previousQuestion;
 
 // Initialize the character select dropdown using the characters array
 characterSelect.addEventListener("change", () => {
-  hasIntroduced = false;
-  previousAnswer = "";
-  currentCharacter = characterSelect.value;
-  score = 0;
-  scoreElement.innerText = `Score: ${score}`;
-  askedQuestions.clear();
-  generateQuiz(currentCharacter, previousAnswer, score, previousQuestion);
+  if (characterSelect.value === "custom") {
+    customInput.style.display = "inline";
+  } else {
+    customInput.style.display = "none";
+    hasIntroduced = false;
+    previousAnswer = "";
+    currentCharacter = characterSelect.value;
+    score = 0;
+    scoreElement.innerText = `Score: ${score}`;
+    askedQuestions.clear();
+    generateQuiz(currentCharacter, previousAnswer, score, previousQuestion);
+  }
+});
+
+customInput.addEventListener("blur", () => {
+  if (customInput.value.trim() !== "") {
+    const newOption = document.createElement("option");
+    newOption.value = customInput.value;
+    newOption.text = customInput.value;
+    characterSelect.add(newOption);
+    characterSelect.value = customInput.value;
+    customInput.style.display = "none";
+    customInput.value = "";
+    hasIntroduced = false;
+    previousAnswer = "";
+    currentCharacter = characterSelect.value;
+    score = 0;
+    scoreElement.innerText = `Score: ${score}`;
+    askedQuestions.clear();
+    generateQuiz(currentCharacter, previousAnswer, score, previousQuestion);
+  }
 });
 
 // Function to generate a quiz question
