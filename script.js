@@ -15,6 +15,20 @@ let currentCharacter = "";
 let askedQuestions = new Set();
 let previousQuestion;
 
+// Function to disable all inputs
+function disableInputs() {
+  document.querySelectorAll("input, select, button").forEach((element) => {
+    element.disabled = true;
+  });
+}
+
+// Function to enable all inputs
+function enableInputs() {
+  document.querySelectorAll("input, select, button").forEach((element) => {
+    element.disabled = false;
+  });
+}
+
 // Initialize the character select dropdown using the characters array
 characterSelect.addEventListener("change", () => {
   if (characterSelect.value === "custom") {
@@ -76,6 +90,7 @@ const generateQuiz = async (
   try {
     // Show thinking indicator and hide quiz container while fetching the question
     thinkingIndicator.style.display = "block";
+    disableInputs();
     thinkingIndicator.innerText = `${character} is currently thinking of a new question....`; // Update thinking indicator text
     quizContainer.style.display = "none"; // Hide quiz container
 
@@ -88,6 +103,7 @@ const generateQuiz = async (
     // Parse the JSON response and hide the thinking indicator
     const data = await response.json();
     thinkingIndicator.style.display = "none";
+    enableInputs();
 
     // If the response is incomplete, generate a new question
     const { intro, question, correct, wrong1, wrong2, wrong3 } = data;
