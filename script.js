@@ -19,6 +19,7 @@ let previousQuestion;
 function disableInputs() {
   document.querySelectorAll("input, select, button").forEach((element) => {
     element.disabled = true;
+    element.classList.add("disabled-input");
   });
 }
 
@@ -26,6 +27,7 @@ function disableInputs() {
 function enableInputs() {
   document.querySelectorAll("input, select, button").forEach((element) => {
     element.disabled = false;
+    element.classList.remove("disabled-input");
   });
 }
 
