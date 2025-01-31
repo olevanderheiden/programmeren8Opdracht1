@@ -15,6 +15,22 @@ let currentCharacter = "";
 let askedQuestions = new Set();
 let previousQuestion;
 
+// Function to disable all inputs
+function disableInputs() {
+  document.querySelectorAll("input, select, button").forEach((element) => {
+    element.disabled = true;
+    element.classList.add("disabled-input");
+  });
+}
+
+// Function to enable all inputs
+function enableInputs() {
+  document.querySelectorAll("input, select, button").forEach((element) => {
+    element.disabled = false;
+    element.classList.remove("disabled-input");
+  });
+}
+
 // Initialize the character select dropdown using the characters array
 characterSelect.addEventListener("change", () => {
   if (characterSelect.value === "custom") {
@@ -76,16 +92,20 @@ const generateQuiz = async (
   try {
     // Show thinking indicator and hide quiz container while fetching the question
     thinkingIndicator.style.display = "block";
+    disableInputs();
     thinkingIndicator.innerText = `${character} is currently thinking of a new question....`; // Update thinking indicator text
     quizContainer.style.display = "none"; // Hide quiz container
 
     //Send a request to the server to generate a quiz question
     const response = await fetch(
-      `http://localhost:3000/quiz?request=${encodeURIComponent(request)}`
+      `https://didactic-trout-wgrvvqqpwj6c75w-3000.app.github.dev/quiz?request=${encodeURIComponent(
+        request
+      )}`
     );
     // Parse the JSON response and hide the thinking indicator
     const data = await response.json();
     thinkingIndicator.style.display = "none";
+    enableInputs();
 
     // If the response is incomplete, generate a new question
     const { intro, question, correct, wrong1, wrong2, wrong3 } = data;
