@@ -168,8 +168,8 @@ const generateQuiz = async (
 
     quizContainer.style.display = "block";
   } catch (error) {
+    thinkingIndicator.innerText = `We are trying to reach ${character} but we are having some trouble. Please try again later. Zemuria is a big place afterall perharps ${character} is busy right now.`;
     console.error("Error fetching quiz:", error);
-    thinkingIndicator.innerText = `We are trying to reach ${character} but we are having some trouble. Please try again later. Zemuria is a big place after perharps ${character} is busy right now.`;
     generateQuiz(character, previousAnswer, score, previousQuestion);
   }
 };
