@@ -1,7 +1,0 @@
-OPENAI_API_TYPE=azure
-OPENAI_API_VERSION=2023-12-01-preview
-OPENAI_API_BASE=https://example.openai.azure.com
-AZURE_OPENAI_API_KEY=add-your-key-here
-AZURE_OPENAI_API_DEPLOYMENT_NAME=deploy-gpt-35-turbo
-AZURE_OPENAI_API_ENGINE_NAME=deploy-gpt-35-turbo
-AZURE_OPENAI_API_INSTANCE_NAME=add-your-instance-name-here

@@ -81,7 +81,9 @@ const generateQuiz = async (
 
     //Send a request to the server to generate a quiz question
     const response = await fetch(
-      `http://localhost:3000/quiz?request=${encodeURIComponent(request)}`
+      `https://didactic-trout-wgrvvqqpwj6c75w-3000.app.github.dev/quiz?request=${encodeURIComponent(
+        request
+      )}`
     );
     // Parse the JSON response and hide the thinking indicator
     const data = await response.json();
