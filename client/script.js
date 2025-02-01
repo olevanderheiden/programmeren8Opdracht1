@@ -126,7 +126,7 @@ const generateQuiz = async (
 
     //Update the has introduced flag to avoid reintroducing the character when generating the next question
     if (!hasIntroduced) {
-      hasIntroduced = true; // Update the flag here
+      hasIntroduced = true;
     }
     quizIntroduction.innerText = intro;
 
