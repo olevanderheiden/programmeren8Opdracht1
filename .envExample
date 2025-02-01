@@ -1,5 +1,5 @@
-LANGSMITH_TEMPERATURE = 1
-LANGSMITH_MODEL = mistralai/Mixtral-8x7B-Instruct-v0.1
-LANGSMITH_API_KEY= enter your api key here
+LANGSMITH_MODEL = mixtral-8x7b-32768
+GROQ_API_KEY= put your api key here!
 LANGSMITH_TRACKING = true 
 LANGSMITH_API_MAX_TOKENS = 25
+LANGSMITH_MAX_RETRIES = 30

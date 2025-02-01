@@ -1,5 +1,5 @@
 import express from "express";
-import { ChatTogetherAI } from "@langchain/community/chat_models/togetherai";
+import { ChatGroq } from "@langchain/groq";
 import dotenv from "dotenv";
 import cors from "cors";
 
@@ -13,12 +13,11 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 //Create a new instance of the ChatOpenAI class using the Azure OpenAI API
-const model = new ChatTogetherAI({
-  togetherAIApiKey: process.env.LANGSMITH_API_KEY,
+const model = new ChatGroq({
   LANGSMITH_TRACING: process.env.LANGSMITH_TRACING,
-  LANGSMITH_API_KEY: process.env.LANGSMITH_API_KEY,
+  LANGSMITH_API_KEY: process.env.GROQ_API_KEY,
   model: process.env.LANGSMITH_MODEL,
-  temperature: process.env.LANGSMITH_TEMPERATURE,
+  temperature: 1,
   maxTokens: process.env.LANGSMITH_MAX_TOKENS,
 });
 
