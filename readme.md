@@ -17,6 +17,7 @@ In dit gedeelte van de app kan je personages kiezen die de quiz hosten en tevens
 2. Open de index.html in je browser of start een locale server door op de go-live knop te drukken in visuel studio code
 
 Tip Wil je de app gebruiken zonder de onlin server en in plaats daar van een lokale server gebruiken? clone dan ook de server kant. Gebruik de installatie instructies voor de server kant en verrander de url op regel 101 van script .js naar: `http://localhost:3000/quiz?request=${encodeURIComponent(request)}`. Wees er van bewust dat er nogsteeds verbinding gemaakt moet worden met met chatgpt en de app dus niet offline werkt.
+
 Tip Het is makkelijker om de [Main Branch](https://github.com/olevanderheiden/programmeren8Opdracht1) te clonen als je een lokale server wilt gebruiken omdat deze zowel de client als server side bevat.
 
 ## Hoe te spelen?
