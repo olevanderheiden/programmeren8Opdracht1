@@ -42,3 +42,6 @@ Let wel het verversen van de pagina reset de lijst van personages weer naar de d
 # Server side (Basis voor server side die online staat)
 
 [Ga naar dit gedeelte van het project](https://github.com/olevanderheiden/programmeren8Opdracht1/tree/serverSide)
+
+# Together Ai Variant
+[Ga naar dit gedeelte van het project](https://github.com/olevanderheiden/programmeren8Opdracht1/tree/ChatTogetherExperiment)
