@@ -15,22 +15,6 @@ let currentCharacter = "";
 let askedQuestions = new Set();
 let previousQuestion;
 
-// Function to disable all inputs
-function disableInputs() {
-  document.querySelectorAll("input, select, button").forEach((element) => {
-    element.disabled = true;
-    element.classList.add("disabled-input");
-  });
-}
-
-// Function to enable all inputs
-function enableInputs() {
-  document.querySelectorAll("input, select, button").forEach((element) => {
-    element.disabled = false;
-    element.classList.remove("disabled-input");
-  });
-}
-
 // Initialize the character select dropdown using the characters array
 characterSelect.addEventListener("change", () => {
   if (characterSelect.value === "custom") {
