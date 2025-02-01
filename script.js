@@ -81,10 +81,12 @@ const generateQuiz = async (
     request = `You are ${character} from the The Legend of Heroes: Trails series made by Nihon Falcom. Introduce yourself in less than 100 characters and then host a quiz in character with a question and four possible answers. Indicate which answer is correct. Limit your self to only questions about the Trails series. And only ask questions that ${character} would know about.`;
   } else {
     //If the character has introduced themselves, generate a request to host a quiz question without introducing the character
-    request = `You are ${character} from the The Legend of Heroes: Trails series made by Nihon Falcom. Host a quiz in character with a question and four possible answers. Indicate which answer is correct. Limit your self to only questions about the Trails series. And only ask questions that ${character} would know about.`;
+    request = `You are ${character} from the The Legend of Heroes: Trails series made by Nihon Falcom. Host a quiz in character with a question and four possible answers. Indicate which answer is correct. Limit your self to only questions about the Trails series. And only ask questions that ${character} would know about. You asked the following questions allready ${[
+      ...askedQuestions,
+    ].join(", ")}.`;
     if (previousAnswer) {
       // If the player has answered a question bfore, generate a request to provide feedback based on the player's answer and score
-      request += ` Comment on the player's performance based on their score and previous answer. Dot this in character. The previous answer was ${previousAnswer}. And the total score the player currently has is ${score}. The previous question was ${previousQuestion}. Do this in character too! Avoid reintroducing yourself!`;
+      request += ` Comment on the player's performance based on their score and previous answer. Dot this in character. The previous answer was ${previousAnswer}. And the total score the player currently has is ${score}.The previous question was ${previousQuestion}. Do this in character too! Avoid reintroducing yourself!`;
     }
   }
 
