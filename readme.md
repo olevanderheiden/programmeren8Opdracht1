@@ -1,19 +1,16 @@
 ## Project omschrijving
 
-In deze game kan je een quiz spelen over de Trail/kiseki game serie gehost door 1 van de belangrijke characters van de serie. Probeer een zo hoog mogelijke score te behalen.
+Dit is de server side van de Trails Quiz game. Dit gedeelte van de applicatie beheert de verbinding met open AI en handelt de prompts.
+Let op: Dit gedeelte van de app werkt niet zonder de [client side](https://github.com/olevanderheiden/programmeren8Opdracht1/tree/clientSide). Bekijk de installatie instructies van client om te zien hoe de game gespeeld moet worden en hoe je verbinding kan maken met de server side als je die lokaal installeert.
 
 ## Installatie
 
 1. Clone de repository met git clone.
-2. Navigeer naar het sever gedeelte via de terminal (cd server)
-3. Installeer de packages die nodig zijn voor het server gedeelte met npm install(zorg dat je in de server map staat).
-4. Geef je eigen Azure open ai keys op in een .env file(een voorbeeld van het verwachte format is the vindenin .envEaxample)
-5. Start de server met npm run start(zorg dat je in de server map staat).
-6. open de html pagina(te vinden in de client map) in je browser of start deze als een server door op de go-live knop te drukken in visual studio code.
-7. Test de functionaliteit van de app door op start quiz te drukke of een karakter te kiezen in de dropdown.
+2. Installeer de packages die nodig zijn voor het server gedeelte met npm install.
+3. Geef je eigen Azure open ai keys op in een .env file(een voorbeeld van het verwachte format is the vindenin .envEaxample) deze moet ge plaats worden in de root folder.
+4. Start de server met npm run start.
+5. Volg de installatie instructies van [client side](https://github.com/olevanderheiden/programmeren8Opdracht1/tree/clientSide).
 
-## Hoe te spelen?
+## Mogelijke problemen
 
-Druk op de Start quiz knop. Beantwoord de meerkeuzenvraag die gesteld word. Afhankelijk van wat je antwoord is zal de host reageren op je presaties en misschien zelfs over de vraag die eerder gesteld werd. Probeer een zo hoog mogelijke score te halen.
-
-letop: Wanneer je van personage wisselt zal de score worden ge-reset. Tevens zal het nieuwe personage zich introduceren.
+Het kan voorkomen dat het request naar open AI of niet goed word verwerkt of het verkeerde format(geen Json) terug geeft. Dit zal een error in de console veroorzaken. Wanneer dit gebeurt zal het request automatisch opnieuw worden gestuurd tot er succes word geboekt. Let echter wel op dat dit ook gebeurt wanneer de server niet aanstaat. Om een oneindige lijst aan errors te voorkomen word het aangeraden om de pagina te verversen en de controleren of de sever wel draait on/ofline.
