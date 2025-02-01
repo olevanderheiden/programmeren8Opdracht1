@@ -85,8 +85,8 @@ const generateQuiz = async (
       ...askedQuestions,
     ].join(", ")}.`;
     if (previousAnswer) {
-      // If the player has answered a question bfore, generate a request to provide feedback based on the player's answer and score
-      request += ` Comment on the player's performance based on their score and previous answer. Dot this in character. The previous answer was ${previousAnswer}. And the total score the player currently has is ${score}.The previous question was ${previousQuestion}. Do this in character too! Avoid reintroducing yourself!`;
+      // If the player has answered a question before, generate a request to provide feedback based on the player's answer and score
+      request += ` Comment on the player's performance based on their score and previous answer. Do this in character. The previous answer was ${previousAnswer}. And the total score the player currently has is ${score}. The player has answered ${askedQuestions.size} questions.The previous question was ${previousQuestion}. Do this in character too! Avoid reintroducing yourself!`;
     }
   }
 
