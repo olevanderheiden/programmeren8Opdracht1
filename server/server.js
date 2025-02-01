@@ -1,5 +1,5 @@
 import express from "express";
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatTogetherAI } from "@langchain/community/chat_models/togetherai";
 import dotenv from "dotenv";
 import cors from "cors";
 
@@ -13,11 +13,13 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 
 //Create a new instance of the ChatOpenAI class using the Azure OpenAI API
-const model = new ChatOpenAI({
-  azureOpenAIApiKey: process.env.AZURE_OPENAI_API_KEY,
-  azureOpenAIApiVersion: process.env.OPENAI_API_VERSION,
-  azureOpenAIApiInstanceName: process.env.AZURE_OPENAIA_API_INSTANCE_NAME,
-  azureOpenAIApiDeploymentName: process.env.AZURE_OPENAIA_API_DEPLOYMENT_NAME,
+const model = new ChatTogetherAI({
+  togetherAIApiKey: process.env.LANGSMITH_API_KEY,
+  LANGSMITH_TRACING: process.env.LANGSMITH_TRACING,
+  LANGSMITH_API_KEY: process.env.LANGSMITH_API_KEY,
+  model: process.env.LANGSMITH_MODEL,
+  temperature: process.env.LANGSMITH_TEMPERATURE,
+  maxTokens: process.env.LANGSMITH_MAX_TOKENS,
 });
 
 //Define a route to generate a quiz question
