@@ -7,7 +7,7 @@ Let op: Dit gedeelte van de app werkt niet zonder de [client side](https://githu
 
 1. Clone de repository met git clone.
 2. Installeer de packages die nodig zijn voor het server gedeelte met npm install.
-3. Geef je eigen Azure open ai keys op in een .env file(een voorbeeld van het verwachte format is the vindenin .envEaxample) deze moet ge plaats worden in de root folder.
+3. Geef je eigen Azure open ai keys op in een .env file(een voorbeeld van het verwachte format is the vinden in .envEaxample) deze moet geplaatst worden in de root folder.
 4. Start de server met npm run start.
 5. Volg de installatie instructies van [client side](https://github.com/olevanderheiden/programmeren8Opdracht1/tree/clientSide).
 
